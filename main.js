@@ -7,7 +7,6 @@ const status = document.querySelector(".form-status");
 const workCards = document.querySelectorAll(".work-card");
 
 const themeKey = "theme";
-const noteKey = "gh-pages-test-note";
 
 function systemTheme() {
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -103,11 +102,12 @@ fields.forEach(({ id }) => {
   input.addEventListener("input", () => clearError(input, error));
 });
 
+const submitButton = form.querySelector('[type="submit"]');
+
 form.noValidate = true;
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const data = {};
   let firstInvalid = null;
 
   fields.forEach(({ id, message, test }) => {
@@ -115,7 +115,6 @@ form.addEventListener("submit", (event) => {
     const error = document.getElementById(`${id}-error`);
     if (test(input.value)) {
       clearError(input, error);
-      data[id] = input.value.trim();
       return;
     }
     showError(input, error, message);
@@ -129,11 +128,30 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
-  try {
-    localStorage.setItem(noteKey, JSON.stringify({ ...data, savedAt: new Date().toISOString() }));
-    status.textContent = "已记录在这台浏览器里。";
-  } catch (error) {
-    status.textContent = "校验通过，但这台浏览器没有记下内容。";
-  }
+  submitButton.disabled = true;
   status.hidden = false;
+  status.textContent = "正在发送…";
+
+  try {
+    const payload = Object.fromEntries(new FormData(form));
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+    const result = await response.json();
+    if (!result.success) {
+      status.textContent = "没有发送成功，请稍后再试。";
+      return;
+    }
+    form.reset();
+    status.textContent = "已发送，请到邮箱查收。";
+  } catch (error) {
+    status.textContent = "没有发送成功，请稍后再试。";
+  } finally {
+    submitButton.disabled = false;
+  }
 });

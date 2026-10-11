@@ -197,6 +197,15 @@ h1 {
   transform: translateY(-1px);
 }
 
+.button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.button:disabled:hover {
+  transform: none;
+}
+
 .mark-stage {
   position: relative;
   aspect-ratio: 1;

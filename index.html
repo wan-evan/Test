@@ -118,9 +118,11 @@
         <div class="section-head">
           <p class="kicker">04 — 联系</p>
           <h2>留一句就能试表单。</h2>
-          <p>提交后只记在这台浏览器里，方便你检查校验。正式使用时再换成你自己的接收方式。</p>
+          <p>提交后通过 Web3Forms 发到你的邮箱。</p>
         </div>
-        <form class="contact-form">
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="b39ae3cf-d956-4ecb-aee2-b6d56faf014b">
+          <input type="hidden" name="subject" value="示例工作室的新留言">
           <div class="field">
             <label for="name">姓名</label>
             <input id="name" name="name" type="text" autocomplete="name" aria-describedby="name-error" required>
@@ -137,7 +139,7 @@
             <p class="field-error" id="message-error" hidden></p>
           </div>
           <div class="field-wide form-actions">
-            <button class="button primary" type="submit">记下这句</button>
+            <button class="button primary" type="submit">发送</button>
             <p class="form-status" role="status" hidden></p>
           </div>
         </form>
