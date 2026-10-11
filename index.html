@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>示例工作室</title>
+  <meta name="description" content="给 GitHub Pages 用的单页模板。改文案和颜色后即可当正式页面发布。">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230f6e6b'/%3E%3Crect x='8' y='8' width='16' height='16' fill='none' stroke='%23f4f0e8' stroke-width='2'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script>
+    (function () {
+      var theme = "light";
+      try {
+        var saved = localStorage.getItem("theme");
+        var dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (saved === "light" || saved === "dark") theme = saved;
+        else theme = dark ? "dark" : "light";
+      } catch (error) {
+        theme = "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-bar">
+      <a class="brand" href="#top">示例工作室</a>
+      <nav id="site-nav" class="site-nav" aria-label="页内">
+        <a href="#capabilities">能力</a>
+        <a href="#work">案例</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <div class="header-tools">
+        <button class="theme-toggle" type="button" aria-pressed="false">深色</button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">菜单</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <p class="kicker">单页模板</p>
+        <h1>把一个想法，排成能打开的一页。</h1>
+        <p class="lede">这是给 GitHub Pages 准备的静态起点。改标题、换卡片、接上你自己的内容，就可以当正式页面发出去。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">看案例</a>
+          <a class="button" href="#contact">联系</a>
+        </div>
+      </div>
+      <div class="mark" aria-hidden="true">
+        <div class="mark-stage">
+          <span class="mark-sheet"></span>
+          <span class="mark-ring"></span>
+          <span class="mark-bar"></span>
+          <span class="mark-index">01</span>
+        </div>
+        <p class="mark-caption">静态页面 · 无构建</p>
+      </div>
+    </section>
+
+    <section id="capabilities" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">02 — 能力</p>
+          <h2>三件一开始就放好的事</h2>
+        </div>
+        <div class="card-grid">
+          <article class="card">
+            <h3>版面</h3>
+            <p>单页结构已经分好。改文案、增减卡片，不用重新排版。</p>
+          </article>
+          <article class="card">
+            <h3>主题</h3>
+            <p>深浅色都写在样式表开头的变量里。换一套颜色，只改那几行。</p>
+          </article>
+          <article class="card">
+            <h3>发布</h3>
+            <p>没有构建步骤。把文件放在仓库根目录，GitHub Pages 就能打开。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="kicker">03 — 案例</p>
+          <h2>三张可以换掉的作品卡</h2>
+          <p>点一张卡片，它会在页内高亮。这些名字都是占位，写成你自己的项目即可。</p>
+        </div>
+        <div class="work-grid">
+          <article class="work-card">
+            <p class="tag">出版</p>
+            <h3><button class="work-select" type="button" aria-pressed="false">城南书局</button></h3>
+            <p>一本城市书店的介绍页，留下目录和到店时间的位置。</p>
+            <p class="picked">当前选中</p>
+          </article>
+          <article class="work-card">
+            <p class="tag">器物</p>
+            <h3><button class="work-select" type="button" aria-pressed="false">北岸陶瓷</button></h3>
+            <p>三件器皿的短介绍。图片区域留白，以后换成实拍。</p>
+            <p class="picked">当前选中</p>
+          </article>
+          <article class="work-card">
+            <p class="tag">活动</p>
+            <h3><button class="work-select" type="button" aria-pressed="false">周末市集</button></h3>
+            <p>摊位名单和当天路线，适合做一场临时活动的单页。</p>
+            <p class="picked">当前选中</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="wrap contact-layout">
+        <div class="section-head">
+          <p class="kicker">04 — 联系</p>
+          <h2>留一句就能试表单。</h2>
+          <p>提交后只记在这台浏览器里，方便你检查校验。正式使用时再换成你自己的接收方式。</p>
+        </div>
+        <form class="contact-form">
+          <div class="field">
+            <label for="name">姓名</label>
+            <input id="name" name="name" type="text" autocomplete="name" aria-describedby="name-error" required>
+            <p class="field-error" id="name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="email">邮箱</label>
+            <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error" required>
+            <p class="field-error" id="email-error" hidden></p>
+          </div>
+          <div class="field field-wide">
+            <label for="message">留言</label>
+            <textarea id="message" name="message" aria-describedby="message-error" required></textarea>
+            <p class="field-error" id="message-error" hidden></p>
+          </div>
+          <div class="field-wide form-actions">
+            <button class="button primary" type="submit">记下这句</button>
+            <p class="form-status" role="status" hidden></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bar">
+      <p>示例工作室</p>
+      <p>占位页面，可随意替换。</p>
+      <a href="#top">返回顶部</a>
+    </div>
+  </footer>
+  <script src="./main.js"></script>
+</body>
+</html>
